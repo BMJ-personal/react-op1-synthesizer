@@ -249,7 +249,8 @@ function App() {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [selectedStep, sequenceLength, handlePianoKeyClick]); // Add handlePianoKeyClick
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedStep, sequenceLength]);
 
 
   // Control functions
