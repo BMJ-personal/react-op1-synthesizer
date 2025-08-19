@@ -1,0 +1,489 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.op1-container {
+  width: 700px;
+  height: 420px;
+  background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 
+    8px 8px 16px #bebebe,
+    -8px -8px 16px #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Top Section */
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+/* Modern Speaker Design */
+.modern-speaker {
+  width: 80px;
+  height: 50px;
+  background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 
+    inset 2px 2px 4px rgba(255,255,255,0.1),
+    inset -2px -2px 4px rgba(0,0,0,0.3);
+}
+
+.modern-speaker::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 30px;
+  background: 
+    radial-gradient(circle at 15px 8px, #666 2px, transparent 2px),
+    radial-gradient(circle at 30px 8px, #666 2px, transparent 2px),
+    radial-gradient(circle at 45px 8px, #666 2px, transparent 2px),
+    radial-gradient(circle at 15px 15px, #666 2px, transparent 2px),
+    radial-gradient(circle at 30px 15px, #666 2px, transparent 2px),
+    radial-gradient(circle at 45px 15px, #666 2px, transparent 2px),
+    radial-gradient(circle at 15px 22px, #666 2px, transparent 2px),
+    radial-gradient(circle at 30px 22px, #666 2px, transparent 2px),
+    radial-gradient(circle at 45px 22px, #666 2px, transparent 2px);
+  background-size: 15px 7px;
+}
+
+.screen-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.screen {
+  background: #2c2c2c;
+  color: #00ff88;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  border: 2px inset #666;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.control-knobs {
+  display: flex;
+  gap: 15px;
+}
+
+.knob-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.knob {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 3px solid #999;
+  position: relative;
+  cursor: pointer;
+}
+
+.knob.orange {
+  background: #ff6b35;
+}
+
+.knob-indicator {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 8px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.knob-label {
+  font-size: 7px;
+  color: #666;
+  font-weight: bold;
+  text-align: center;
+  min-height: 10px;
+}
+
+.knob.clickable {
+  transition: transform 0.1s;
+}
+
+.knob.clickable:hover {
+  transform: scale(1.05);
+}
+
+.knob.clickable:active {
+  transform: scale(0.95);
+}
+
+/* Oscillator Controls Section */
+.oscillator-controls-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 80px;
+  padding: 0 20px;
+}
+
+.oscillator-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.panel-title {
+  font-size: 8px;
+  color: #666;
+  font-weight: bold;
+  text-align: center;
+}
+
+.oscillator-grid {
+  display: flex;
+  gap: 15px;
+}
+
+.oscillator-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.toggle-btn {
+  width: 20px;
+  height: 15px;
+  background: #ddd;
+  border: 1px solid #999;
+  border-radius: 3px;
+  font-size: 8px;
+  color: #666;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.1s;
+}
+
+.toggle-btn.active {
+  background: #4ECDC4;
+  color: white;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+.mini-knob {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #999;
+  background: #ff6b35;
+  position: relative;
+  cursor: pointer;
+}
+
+.mini-knob-indicator {
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 5px;
+  background: white;
+  border-radius: 1px;
+  transition: transform 0.3s ease;
+}
+
+.mini-knob.clickable:hover {
+  transform: scale(1.1);
+}
+
+.wave-display {
+  font-size: 12px;
+  color: #666;
+  font-weight: bold;
+  width: 20px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Sequencer Panel */
+.sequencer-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.sequencer-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.seq-btn {
+  width: 22px;
+  height: 18px;
+  background: #ddd;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s;
+}
+
+.seq-btn:hover {
+  background: #ccc;
+}
+
+.seq-btn.playing {
+  background: #4ECDC4;
+  color: white;
+}
+
+/* Octaver Container */
+.octaver-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.switch-track {
+  width: 20px;
+  height: 50px;
+  background: #ccc;
+  border: 2px solid #999;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.switch-handle {
+  width: 12px;
+  height: 12px;
+  background: #666;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transition: transform 0.2s ease;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.switch-labels {
+  position: absolute;
+  left: -15px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+  font-weight: bold;
+}
+
+.switch-up {
+  margin-top: 2px;
+}
+
+.switch-down {
+  margin-bottom: 2px;
+}
+
+.switch-label {
+  font-size: 7px;
+  color: #666;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Middle Section */
+.middle-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Enhanced Function Buttons for Sequencer */
+.function-buttons {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 2px;
+  height: 25px;
+}
+
+.function-btn {
+  background: #ddd;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  font-size: 8px;
+  color: #666;
+  cursor: pointer;
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.8);
+  transition: all 0.1s;
+}
+
+.function-btn:hover {
+  background: #ccc;
+}
+
+.function-btn.current-step {
+  background: #4ECDC4;
+  color: white;
+  box-shadow: 0 0 8px rgba(78, 205, 196, 0.6);
+  transform: scale(1.1);
+}
+
+.function-btn.has-note {
+  background: #ff6b35;
+  color: white;
+}
+
+.function-btn.selected-step {
+  background: #69CF59;
+  color: white;
+  box-shadow: 0 0 4px rgba(105, 207, 89, 0.8);
+}
+
+.function-btn.disabled-step {
+  background: #999;
+  color: #666;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.function-btn.disabled-step:hover {
+  background: #999;
+}
+
+.black-keys-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 20px;
+  gap: 3px;
+  margin-top: 15px; /* Moved black keys further down */
+}
+
+.black-key-spacer {
+  width: 15px;
+  height: 1px;
+}
+
+.black-key {
+  width: 18px;
+  height: 18px;
+  background: #333;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.black-key:active {
+  background: #555;
+}
+
+.black-key.pressed {
+  background: #4ECDC4 !important;
+  transform: translateY(2px);
+}
+
+/* Bottom Section - Keep white keys same height */
+.bottom-section {
+  height: 80px;
+}
+
+.piano-keys {
+  display: flex;
+  height: 100%;
+  gap: 1px;
+}
+
+.piano-key {
+  flex: 1;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 0 0 8px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #666;
+  font-weight: bold;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.8);
+}
+
+.piano-key:active {
+  background: #eee;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.piano-key.pressed {
+  background: #4ECDC4 !important;
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Instructions */
+.instructions {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  color: #888;
+  text-align: center;
+  max-width: 90%;
+}
