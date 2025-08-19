@@ -250,7 +250,7 @@ function App() {
       window.removeEventListener('keyup', handleKeyUp);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedStep, sequenceLength]);
+  }, [selectedStep, sequenceLength, filterType, octaver, volume, sustain, detune, osc1Enabled, osc2Enabled, osc3Enabled, osc4Enabled, osc1Waveform, osc2Waveform, osc3Waveform, osc4Waveform]);
 
 
   // Control functions

@@ -479,11 +479,14 @@ body {
 /* Instructions */
 .instructions {
   position: absolute;
-  bottom: 8px;
+  bottom: 4px; /* Move up slightly */
   left: 50%;
   transform: translateX(-50%);
-  font-size: 8px;
+  font-size: 7px; /* Smaller font */
   color: #888;
   text-align: center;
-  max-width: 90%;
+  max-width: 85%; /* Slightly narrower */
+  line-height: 1.1; /* Tighter line spacing */
+  height: 12px; /* Fixed height to prevent overflow */
+  overflow: hidden; /* Hide any overflow */
 }
