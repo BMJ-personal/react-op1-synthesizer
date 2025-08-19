@@ -236,12 +236,12 @@ function App() {
         handlePianoKeyClick(keyMapping[key as keyof typeof keyMapping]);
       }
     };
-
+  
     const handleKeyUp = (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
       pressedKeys.current.delete(key);
     };
-
+  
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
     
@@ -249,7 +249,8 @@ function App() {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [selectedStep, sequenceLength]);
+  }, [selectedStep, sequenceLength, handlePianoKeyClick]); // Add handlePianoKeyClick
+
 
   // Control functions
   const cycleFilter = () => {
@@ -648,6 +649,12 @@ function App() {
           </div>
         </div>
 
+        {/* Instructions */}
+        <div className="instructions">
+          <small>
+            Click step buttons (1-24) to select • Click ◯ to deselect • Click piano keys to set step notes or play freely
+          </small>
+        </div>
       </div>
     </div>
   );
