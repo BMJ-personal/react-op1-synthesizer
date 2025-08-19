@@ -653,7 +653,7 @@ function App() {
         {/* Instructions */}
         <div className="instructions">
           <small>
-            Click step buttons (1-24) to select • Click ◯ to deselect • Click piano keys to set step notes or play freely
+            Select steps (1-24) • ◯ to deselect • Piano keys set notes/play
           </small>
         </div>
       </div>
