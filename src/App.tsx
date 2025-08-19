@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
 
 function App() {
@@ -60,7 +60,7 @@ function App() {
     'k': 'C2', 'o': 'C#2', 'l': 'D2', 'p': 'D#2', ';': 'E2'
   };
 
-  const playNote = (note: string) => {
+  const playNote = useCallback((note: string) => {
     if (!audioContextRef.current || !note) return;
     
     setPressedKey(note);
@@ -140,7 +140,7 @@ function App() {
     });
     
     mainGainNode.connect(audioContext.destination);
-  };
+  }, [filterType, volume, detune, sustain, octaver, osc1Enabled, osc2Enabled, osc3Enabled, osc4Enabled, osc1Waveform, osc2Waveform, osc3Waveform, osc4Waveform]);
 
   // Sequencer functions
   const startSequencer = () => {
@@ -212,7 +212,7 @@ function App() {
   };
 
   // Handle piano key clicks to set sequence step notes
-  const handlePianoKeyClick = (note: string) => {
+  const handlePianoKeyClick = useCallback((note: string) => {
     // If we have a selected step (not -1), set that step's note
     if (selectedStep >= 0) {
       setStepNote(selectedStep, note);
@@ -222,7 +222,7 @@ function App() {
     }
     // Always play the note
     playNote(note);
-  };
+  }, [selectedStep, sequenceLength, playNote]);
 
   // Keyboard support
   useEffect(() => {
@@ -236,12 +236,12 @@ function App() {
         handlePianoKeyClick(keyMapping[key as keyof typeof keyMapping]);
       }
     };
-  
+
     const handleKeyUp = (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
       pressedKeys.current.delete(key);
     };
-  
+
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
     
@@ -249,9 +249,7 @@ function App() {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedStep, sequenceLength, filterType, octaver, volume, sustain, detune, osc1Enabled, osc2Enabled, osc3Enabled, osc4Enabled, osc1Waveform, osc2Waveform, osc3Waveform, osc4Waveform]);
-
+  }, [handlePianoKeyClick]);
 
   // Control functions
   const cycleFilter = () => {
